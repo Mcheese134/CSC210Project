@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <link type = "text/css" rel="stylesheet" href="../static/stylesheets/login.css"/>
+    <!-- {{url_for('static', filename='styles.css')}} -->
+</head>
+<body style="background-color: #6D87A8;">
+    <div class="adventureLogo">
+        <img src="{{url_for('static', filename='abSS.png')}}" style = "display: block; margin-left: auto; margin-right: auto; width: 50%; height: 50%;" >
+    </div>
+    <div class="centerButtons">
+        <div class= "center">
+            <button class = "loginButton" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">Login</button>
+            <button class = "signUpButton" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">Sign up</button>
+        </div>
+    </div>
+
+    <div id="loginForm" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+          <div class="imgcontainer">
+            <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="{{url_for('static', filename='logoTransp.png')}}" alt="Avatar" class="avatar">
+          </div>
+      
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+      
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+              
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div>
+
+</body>
+<script type="text/javascript" src="../static/js/scripts.js"></script>
+</html>
