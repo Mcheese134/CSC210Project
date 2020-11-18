@@ -4,8 +4,7 @@
 <html>
 
 <head>
-
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"/>
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -22,13 +21,13 @@
 
 </head>
 
-<body>
+<body style="background-color: #6D87A8;">
 
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-                    <a class="navbar-brand" href="index.html">Adventure Board</a>
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #b9adad">
+                    <a class="navbar-brand" href="index.html"><img src="{{url_for('static', filename='logoTransp.png')}}" height = 50 ></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adventureNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -44,14 +43,23 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Pricing</a>
                             </li>
+                        </ul>
+                    </div>
+                    <div class = "collapse navbar-collapse navbar-right">
+                        <ul class="navbar-nav navbar-right">
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
+                                <a class="nav-link" href="#">Profile</a>
                             </li>
                         </ul>
+
                     </div>
             </div>
             </nav>
         </div>
+    </div>
+
+    <div class="adventureLogo">
+        <img src="{{url_for('static', filename='abSS.png')}}" style = "display: block; margin-left: auto; margin-right: auto; width: 50%; height: 50%;" >
     </div>
 
 </body>
