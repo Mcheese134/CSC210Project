@@ -20,6 +20,5 @@ function openNav() {
 
 function closeNav() {
   console.log("I closed");
-
   document.getElementById("mySidenav").style.width = "0";
 }
