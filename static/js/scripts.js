@@ -9,7 +9,11 @@ $(document).ready(function () {
         }
     }
 
-    openNav();
+    $('.Menu').click(function(){
+      openNav();
+    })
+
+
     closeNav();
   });
 
