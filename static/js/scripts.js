@@ -1,6 +1,9 @@
 //jquery equivalent of dom content loaded
 $(document).ready(function () {
+
+  
     var modal = document.getElementById('loginForm');
+    var menu = false;
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
@@ -9,12 +12,15 @@ $(document).ready(function () {
         }
     }
 
-    $('.Menu').click(function(){
+    $("#Menu").click(function(){
       openNav();
-    })
+    }); 
+
+    $("#closebtn").click(function(){
+      openNav();
+    }); 
 
 
-    closeNav();
   });
 
 function openNav() {

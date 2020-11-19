@@ -1,24 +1,27 @@
 .sidenav {
-  width: 130px;
+  height: 100%;
+  width: 0;
   position: fixed;
   z-index: 1;
-  top: 100px;
-  left: 10px;
-  background: #b9adad;
+  top: 0;
+  left: 0;
+  background-color: #6D87A8;
   overflow-x: hidden;
-  padding: 10px 0;
+  transition: 0.5s;
+  padding-top: 60px;
 }
 
 .sidenav a {
-  padding: 6px 8px 6px 16px;
+  padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: white;
+  color: #818181;
   display: block;
+  transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: gray;
+  color: #f1f1f1;
 }
 
 .sidenav .closebtn {
@@ -30,10 +33,9 @@
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
+
+
+
