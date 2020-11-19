@@ -17,7 +17,7 @@ $(document).ready(function () {
     }); 
 
     $("#closebtn").click(function(){
-      openNav();
+      closeNav();
     }); 
 
 
