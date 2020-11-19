@@ -48,3 +48,12 @@ h1 {
     font-size: 18px;
   }
 }
+
+
+.border-right{
+  height: 100vh;
+}
+
+.border-left{
+  height: 100vh;
+}

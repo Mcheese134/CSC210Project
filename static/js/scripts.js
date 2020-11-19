@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 function openNav() {
   console.log("I opened");
-  document.getElementById("mySidenav").style.width = "100%";
+  document.getElementById("mySidenav").style.width = "95%";
 }
 
 function closeNav() {
