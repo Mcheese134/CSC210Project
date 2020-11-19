@@ -3,7 +3,6 @@ $(document).ready(function () {
 
   
     var modal = document.getElementById('loginForm');
-    var menu = false;
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
@@ -25,7 +24,7 @@ $(document).ready(function () {
 
 function openNav() {
   console.log("I opened");
-  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("mySidenav").style.width = "100%";
 }
 
 function closeNav() {
