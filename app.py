@@ -15,5 +15,13 @@ def index():
 def login():
         return render_template('login.html')
 
+@app.route('/create')
+def create():
+        return render_template('create.html')
+
+@app.route('/profile')
+def profile():
+        return render_template('profile.html')
+
 
   
