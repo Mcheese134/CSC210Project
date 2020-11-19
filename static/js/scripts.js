@@ -8,6 +8,18 @@ $(document).ready(function () {
             modal.style.display = "none";
         }
     }
+
+    openNav();
+    closeNav();
   });
 
-  
+function openNav() {
+  console.log("I opened");
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  console.log("I closed");
+
+  document.getElementById("mySidenav").style.width = "0";
+}
