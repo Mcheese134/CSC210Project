@@ -57,3 +57,7 @@ h1 {
 .border-left{
   height: 100vh;
 }
+
+.border-bottom{
+  height: 100%;
+}
