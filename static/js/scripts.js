@@ -1,7 +1,5 @@
 //jquery equivalent of dom content loaded
 $(document).ready(function () {
-
-  
     var modal = document.getElementById('loginForm');
 
     // When the user clicks anywhere outside of the modal, close it
