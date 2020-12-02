@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block
+    title %}{{title}}{% endblock %} {% block page_content %} 
+    <h1>My Profile</h1>
+    <div>
+      {% for posts in create%}
+            <h4>
+                <p><strong>Location: </strong> {{posts.location}}</p>
+                <p><strong>Rating: </strong> {{posts.rating}}</p>
+                <p><strong>Description: </strong> {{posts.description}}</p>
+            </h4>
+            <br><br>
+      {% endfor %}
+{% block scripts %} {{ super() }}
+    <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+    <!-- <script type="text/javascript" src="../static/js/scripts.js"></script> -->
+{%endblock%}{% endblock %}
+    
