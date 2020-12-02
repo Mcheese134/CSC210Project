@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="../static/stylesheets/profile.css" media="screen" type="text/css" />
+
+    <!-- Stylesheet for carousel -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+        defer></script>
+
+    <script src="https://use.fontawesome.com/797d55154b.js"></script>
+
+    <title></title>
+
+</head>
+<body style="background-color: #6D87A8;">
+
+<!--     <div class="position-fixed"> 
+         <div class="section flex-container">
+          <video src="static/road.mp4" type="video/mp4" autoplay muted loop></video>
+        </div>
+    </div> -->
+
+   
+    <div class="position-relative flex-container">
+        
+<!-- 
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light justify-content-between" 
+        style="background-color: #6D87A8; border-radius: 0; z-index: 5">
+            <a class="navbar-brand"> <img src="{{url_for('static', filename='logoTransp.png')}}" height=50> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adventureNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse navbar-right">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav> -->
+
+        <div class="position-fixed flex-container sidenav-wrapper" style="left: 0%;">
+            <div class="position-relative fillwh">
+                <div class="position-absolute opacity-layer"></div>
+                <div class="position-absolute fillwh">
+                    <div class="sidenav">
+                        <div class="flex-container" style="justify-content: flex-start;">
+                            <a href="/"><i class="add fa fa-arrow-left fa-2x"></i></a>
+                            <a href="" style="color: white; font-size: 2em; text-decoration: none; cursor: auto; padding: 0;">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <div class="position-fixed flex-container sidenav-wrapper" style="right: 0%;">
+            <div class="position-relative fillwh">
+                <div class="position-absolute opacity-layer"></div>
+                
+                <div class="position-absolute fillwh">
+                    <div class="sidenav" style="align-items: left">
+                            <a><strong>Map View</strong></a>
+                            <div id="map"></div>
+                            <a><strong>Friends</strong></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>   
+
+        <div class="flex-container feed">
+            
+            <div class="flex-container"style="position: relative; flex-direction: column;">
+                <div class="section flex-container">
+                  <video src="static/road.mp4" type="video/mp4" autoplay muted loop></video>
+                </div>
+                <div class="flex-container position-absolute" style="flex-direction: column;">
+                    <img class="profile-pic" src="static/profile.png" width="200" style="border-radius:50%">
+                    <h1 style="color: white; width: 100%; font-size: 3em; margin-top: 40px;">JAMES SASSMAN</h1>
+                </div>
+            </div>
+
+            <div class="flex-container" style="width: 100%; justify-content: space-between; margin-top: 30px;">
+                <h1 style="height: 100%; color: white; font-size: 3em;">MY POSTS</h1>
+                <div class="flex-container">
+                    <a href="" style="color: white; font-size: 2em; margin-right: 10px; text-decoration: none; cursor: auto;">CREATE</a>
+                    <a href="/create"><i class="add fa fa-plus-square-o fa-5x"></i></a>
+
+                </div>
+                
+            </div>
+
+            <div class="post">
+
+            </div>
+
+            <div class="post">
+
+            </div>
+
+            <div class="post">
+                
+            </div>
+
+            <div class="post">
+                
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+<script type="text/javascript" src="../static/js/scripts.js"></script>
+
+</html>
+

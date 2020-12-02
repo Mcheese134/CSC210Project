@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.fillwh {
+  width: 100%; 
+  height: 100%
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+}
+
+video {
+  width: 120%;
+  height: 100%;
+  object-fit: cover;
+  overflow: visible;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.add {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add:hover {
+  color: black;
+  transition: 0.3s;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+  /* The width is the width of the web page */
+  width: 100%;
+  /* The height is 400 pixels */
+  height: 300px;
+}
+
+.sidenav-wrapper {
+  width: 20vw;
+  height: 100vh; 
+  top: 0%;
+  z-index: 1
+}
+
+.sidenav {
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  margin-top: 30px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  font-size: 2.5em;
+}
+
+.navbar-expand-lg{
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.opacity-layer {
+  width: 100%; 
+  height: 100%; 
+  background: #b9adad; 
+  opacity: 1;
+}
+
+.feed {
+  flex-direction: column; 
+  margin-bottom: 10%; 
+  width: 50vw; 
+  z-index: 2
+}
+
+.post {
+  width: 100%;
+  height: 50vh; 
+  background: #b9adad; 
+  margin: 10%
+}
+
+@media only screen and (max-width: 991px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+
+  .sidenav-wrapper {
+    display: none;
+  }
+
+    video {
+    width: 200%;
+  }
+
+  .feed {
+    width: 70vw; 
+  }
+
+}
+
+

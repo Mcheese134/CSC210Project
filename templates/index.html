@@ -21,6 +21,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
         defer></script>
 
+    <script src="https://use.fontawesome.com/797d55154b.js"></script>
+
+
     <title></title>
 
 </head>
@@ -51,12 +54,12 @@
             </div>
         </nav>
 
-        <div class="position-fixed flex-container sidenav-wrapper" style="width: 20vw;height: 100vh; top: 0%;left: 0%; z-index: 1">
-            <div class="position-relative" style="width: 100%; height: 100%">
-                <div class="position-absolute" style="width: 100%; height: 100%; background: #b9adad; opacity: 0.7;"></div>
-                <div class="position-absolute" style="width: 100%; height: 100%;">
+        <div class="position-fixed flex-container sidenav-wrapper" style="left: 0%;">
+            <div class="position-relative fillwh">
+                <div class="position-absolute opacity-layer"></div>
+                <div class="position-absolute fillwh">
                     <div style="width: 100%; height: 60px"></div>
-                    <div class="sidenav" style="width: 100%; height: 100%; display: flex; flex-direction: column; margin-top: 30px;">
+                    <div class="sidenav">
                         <a><strong>Menu</strong></a>
                         <a href="/profile">Profile</a>
                         <a href="/login">Login</a>
@@ -66,13 +69,13 @@
             </div>
         </div>  
 
-        <div class="position-fixed flex-container sidenav-wrapper" style="width: 20vw;height: 100vh; top: 0%;right: 0%; z-index: 1">
-            <div class="position-relative" style="width: 100%; height: 100%">
-                <div class="position-absolute" style="width: 100%; height: 100%; background: #b9adad; opacity: 0.7;"></div>
+        <div class="position-fixed flex-container sidenav-wrapper" style="right: 0%;">
+            <div class="position-relative fillwh">
+                <div class="position-absolute opacity-layer"></div>
                 
-                <div class="position-absolute" style="width: 100%; height: 100%;">
+                <div class="position-absolute fillwh">
                     <div style="width: 100%; height: 60px"></div>
-                    <div class="sidenav" style="width: 100%; height: 100%; display: flex; flex-direction: column; margin-top: 30px; align-items: left">
+                    <div class="sidenav" style="align-items: left">
                             <a><strong>Map View</strong></a>
                             <div id="map"></div>
                             <a><strong>Friends</strong></a>
@@ -82,13 +85,21 @@
             </div>
         </div>   
 
-        <div class="flex-container" style="flex-direction: column; margin-top: 10%; margin-bottom: 10%; width: 50vw; z-index: 2">
-            
-            <div class="">
+        <div class="flex-container feed">
+<!--             <div class="">
                 <h1 style="color: white; width: 100%; font-size: 3em">EXPLORE</h1>
+            </div> -->
+            <div class="flex-container" style="width: 100%; justify-content: space-between; margin-top: 100px">
+                <h1 style="height: 100%; color: white; font-size: 3em;">Explore</h1>
+                <div class="flex-container">
+                    <a href="" style="color: white; font-size: 2em; margin-right: 10px; text-decoration: none; cursor: auto;">CREATE</a>
+                    <a href="/create"><i class="add fa fa-plus-square-o fa-5x"></i></a>
+
+                </div>
+                
             </div>
 
-            <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
+            <div class="post">
                 <h3>Rochester, NY</h3>
                 <div id="rocCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -135,7 +146,7 @@
                 </div>
             </div>
 
-            <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
+            <div class="post">
                <h3>Seattle, WA</h3>
                 <div id="seattleCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -182,22 +193,22 @@
                 </div> 
             </div>
 
-            <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
+            <div class="post">
                 
             </div>
 
-            <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
+            <div class="post">
                 
             </div>
         </div>
 
         <div id="corbettsInfo" class="modal">
             <form class="modal-content animate" action="/action_page.php" method="post">
-              <div class="imgcontainer">
+            <div class="imgcontainer">
                 <span onclick="document.getElementById('corbettsInfo').style.display='none'" class="close" title="Close Modal">&times;</span>
-              </div>
+            </div>
           
-              <div class="container">
+            <div class="container">
                 <label for="uname"><b>Username</b></label>
                 <p name = "loc">gzheng4<p>
           
@@ -211,36 +222,15 @@
                 <p name = "info"> Corbett's Glen is a beautiful place to visit! I recommend for everyone to visit before it gets cold.</p>
 
                 <button>Save</button>
+            </div>
          </div>
 
     </div>
 
 
-
-
-
-
-<!--     <div class = "col border-right" style = "min-width: 25vw;">
-        <span style="font-size: 32;" id="Menu">&#9776; Menu</span>
-
-        <div class="sidenav" id="mySidenav">
-            <a href="javascript:void(0)" class="closebtn" id="closebtn">&times;</a>
-            <img class = "border-bottom" src="{{url_for('static', filename='abSS.png')}}"
-                style="display: block; margin-left: auto; margin-right: auto; height: 15vh; width: 15vw;">
-            <a href="/profile">Profile</a>
-            <a href="/login">Login</a>
-            <a href="/create">Create Submission</a>
-        </div>
-    </div> -->
-
-
-
-
-
 </body>
 
 <script type="text/javascript" src="../static/js/scripts.js"></script>
-
 
 </html>
 
