@@ -1,6 +1,6 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .flex-container {
@@ -26,11 +26,6 @@ video {
   position: absolute;
   flex-direction: column;
   width: 80%;
-}
-
-.adventureLogo {
-  width: 60%;
-  margin-bottom: 70px;
 }
 
 img {

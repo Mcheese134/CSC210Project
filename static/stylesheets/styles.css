@@ -38,7 +38,7 @@ video {
   z-index: 1;
   top: 0;
   left: 0;
-/*  background-color: #b9adad;*/
+  /*  background-color: #b9adad;*/
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -61,7 +61,7 @@ h1 {
   text-align: center;
 }
 
-.navbar-expand-lg{
+.navbar-expand-lg {
   width: 100%;
 }
 
@@ -76,16 +76,7 @@ h1 {
   .sidenav-wrapper {
     display: none;
   }
-
 }
-
-
-
-
-
-
-
-
 
 /* The Modal (background) */
 .modal {
@@ -159,4 +150,13 @@ h1 {
   .cancelbtn {
     width: 100%;
   }
+}
+
+.friendPics img {
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
