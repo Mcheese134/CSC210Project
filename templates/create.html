@@ -16,18 +16,24 @@
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6" style="background-color:#e6c5a9">
-                <form>
-                    <label for="fname">First name:</label><br>
-                    <input type="text" id="fname" name="fname"><br>
-                    <label for="lname">Last name:</label><br>
-                    <input type="text" id="lname" name="lname"><br>
+                <form action = "/create" METHOD = "POST">
+                    <label for="usr">Username:</label><br>
+                    <input type="text" id="usr" name="usr"><br>
                     <label for="loc">Location:</label>
                     <select id="loc" name="loc">
-                        <option value="roc">Rochester</option>
-                        <option value="seattle">Seattle</option>
+                        <option value="Rochester">Rochester</option>
+                        <option value="Seattle">Seattle</option>
                     </select>
-                    <label for="descript">Description:</label><br>
-                    <textarea id="descript" name="descript"></textarea><br>
+                    <label for="rate">Rating:</label>
+                    <select id="rate" name="rate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label for="desc">Description:</label><br>
+                    <textarea id = "desc" name = "desc" ></textarea><br>
                     <input type="submit" value="Post">
                 </form>
             </div>

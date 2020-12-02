@@ -73,12 +73,23 @@
                     <div class="sidenav" style="width: 100%; height: 100%; display: flex; flex-direction: column; margin-top: 30px; align-items: left">
                             <a><strong>Map View</strong></a>
                             <div id="map"></div>
-                            <div class = "friendPics">
-                                <a><strong>Friends</strong></a>
+                            <a><strong>Friends</strong></a>
+                            <div id = "tooltip" class="friendPics">
                                 <img src = "https://www.outdoorresearch.com/media/magefan_blog/articles/Johnnie_Gall_GPOWERSFILM.jpg">
-                                <img src = "https://s34003.pcdn.co/wp-content/uploads/2019/11/California_Trans-Catalina-Trail-Backpacking-90-Day-4-Emerald-Bay-Gear.jpg.optimal.jpg">
-                                <img src = "https://www.hipcamp.com/journal/wp-content/uploads/2020/02/tyree_moore.jpg">
+                               <span class="tooltiptext"> Rochester, NY</span>
                             </div>
+                            <div id = "tooltip" class="friendPics">
+                                <img src = "https://s34003.pcdn.co/wp-content/uploads/2019/11/California_Trans-Catalina-Trail-Backpacking-90-Day-4-Emerald-Bay-Gear.jpg.optimal.jpg">
+                               <span class="tooltiptext"> Seattle, WA</span>
+                            </div>
+                            <div id = "tooltip" class="friendPics">
+                                <img src = "https://www.hipcamp.com/journal/wp-content/uploads/2020/02/tyree_moore.jpg">
+                               <span class="tooltiptext"> Seattle, WA</span>
+                            </div>
+                            <!-- <div id = "tooltip" class="friendPics">
+                                <img src = "https://www.hipcamp.com/journal/wp-content/uploads/2020/02/tyree_moore.jpg">
+                               <span class="tooltiptext"> Seattle, WA</span>
+                            </div> -->
                     </div>
                 </div>
 
@@ -104,7 +115,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="{{url_for('static', filename='letchworth.jpg')}}" alt="Letchworth State Park" onclick="document.getElementById('letchInfo').style.display='block'" style="width:auto;">
+                            <img src="{{url_for('static', filename='letchworth.jpg')}}" alt="Letchworth State Park" onclick="document.getElementById('letchInfo').style.display='block'">
                             <div class="carousel-caption">
                                 <h3>Letchworth State Park</h3>
                             </div>
@@ -118,7 +129,7 @@
                         </div>
 
                         <div class="item">
-                            <img src="{{url_for('static', filename='CorbettsGlen.jpg')}}" alt="Corbett's Glen" onclick="document.getElementById('corbettsInfo').style.display='block'" style="width:auto;">
+                            <img src="{{url_for('static', filename='CorbettsGlen.jpg')}}" alt="Corbett's Glen" onclick="document.getElementById('corbettsInfo').style.display='block'">
                             <div class="carousel-caption">
                                 <h3>Corbett's Glen</h3>
                             </div>
@@ -185,13 +196,13 @@
                 </div> 
             </div>
 
-            <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
+            <!-- <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
                 
             </div>
 
             <div style="width: 100%;height: 50vh; background: #b9adad; margin: 10%">
                 
-            </div>
+            </div> -->
         </div>
 
         <div id="corbettsInfo" class="modal">
