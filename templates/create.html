@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="../static/stylesheets/create.css" media="screen" type="text/css" />
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+    <head>
+        <link rel="stylesheet" href="../static/stylesheets/create.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
 
-<body style="background-color: #6D87A8;">
-    <div class="container-fluid">
-        <h1>Create New Post</h1>
-        <div class="row">
-          <div class="col-sm-3"></div>
-          <div class="col-sm-6" style="background-color:#e6c5a9">
-            <form>
-                <label for="fname">First name:</label><br>
-                <input type="text" id="fname" name="fname"><br>
-                <label for="lname">Last name:</label><br>
-                <input type="text" id="lname" name="lname"><br>
-                <label for="loc">Location:</label>
-                <select id="loc" name="loc">
-                <option value="roc">Rochester</option>
-                <option value="seattle">Seattle</option>
-                </select>
-            </form>
-         </div>
-          <div class="col-sm-3" ></div>
+    <body style="background-color: #6D87A8;">
+        <img src="{{url_for('static', filename='logoTransp.png')}}"style = "display: block; margin-left: auto; margin-right: auto;"> 
+        <div class="container-fluid">
+            <h1>Create New Post</h1>
+            <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="background-color:#e6c5a9">
+                <form>
+                    <label for="fname">First name:</label><br>
+                    <input type="text" id="fname" name="fname"><br>
+                    <label for="lname">Last name:</label><br>
+                    <input type="text" id="lname" name="lname"><br>
+                    <label for="loc">Location:</label>
+                    <select id="loc" name="loc">
+                        <option value="roc">Rochester</option>
+                        <option value="seattle">Seattle</option>
+                    </select>
+                    <label for="descript">Description:</label><br>
+                    <textarea id = "descript" name = "descript" ></textarea><br>
+                    <input type="submit" value="Post">
+                </form>
+            </div>
+            <div class="col-sm-3" ></div>
+            </div>
         </div>
-      </div>
-    
-</body>
+        
+    </body>
 
 </html>
