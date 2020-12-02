@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-    <head>
-        <link rel="stylesheet" href="../static/stylesheets/create.css" media="screen" type="text/css" />
+
+<head>
+    <link rel="stylesheet" href="../static/stylesheets/create.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    </head>
+</head>
 
-    <body style="background-color: #6D87A8;">
-        <button class = "backButton" onclick="location.href = '/';" style="width:auto;" >Back</button>
-        <img src="{{url_for('static', filename='logoTransp.png')}}"style = "display: block; margin-left: auto; margin-right: auto;"> 
-        <div class="container-fluid">
-            <h1>Create New Post</h1>
-            <div class="row">
+<body style="background-color: #6D87A8;">
+    <button class="backButton" onclick="location.href = '/';" style="width:auto;">Back</button>
+    <img src="{{url_for('static', filename='logoTransp.png')}}"
+        style="display: block; margin-left: auto; margin-right: auto;">
+    <div class="container-fluid">
+        <h1>Create New Post</h1>
+        <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6" style="background-color:#e6c5a9">
                 <form>
@@ -25,14 +27,14 @@
                         <option value="seattle">Seattle</option>
                     </select>
                     <label for="descript">Description:</label><br>
-                    <textarea id = "descript" name = "descript" ></textarea><br>
+                    <textarea id="descript" name="descript"></textarea><br>
                     <input type="submit" value="Post">
                 </form>
             </div>
-            <div class="col-sm-3" ></div>
-            </div>
+            <div class="col-sm-3"></div>
         </div>
-        
-    </body>
+    </div>
+
+</body>
 
 </html>
