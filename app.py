@@ -117,7 +117,7 @@ def delete():
 
 
 #Sign-In Route
-@app.route('/signin', methods = ['GET'])
+@app.route('/signin', methods = ['GET', 'POST'])
 def signin():
     
     if request.method == "GET":
@@ -134,17 +134,16 @@ def signin():
         #users = users.query.order_by(users.username)
 
         user = ""
-        if(users.query.filter_by(u).first()):
-            user = users.query.get(u)
+        if(users.query.filter_by(username = u).first()):
+            user = users.query.filter_by(u).first()
         else:
             print("I FAILED TO GET USER")
 
 
-        if(user.verify_password(p)):
+        if(users.verify_password(self = users, password = p)):
             print("HASH WORKS")
 
-        users = "Test"
-        return render_template('index.html', user = users)
+        return render_template('index.html')
     else:
         print("GET IS UNSUCCESFUL")
     
@@ -163,15 +162,19 @@ def signup():
         p = request.form['psw']
         e = request.form['email']
 
-        if(users.query.filter_by(email=e)):
+        emailExists = db.session.query(users.email).filter_by(email=e).scalar() is not None
+
+        if(emailExists):
             flash('The email already exists. Please try again')
             return redirect(url_for('login'))
         
-        if(users.query.filter_by(username = u)):
+        userExists = db.session.query(users.username).filter_by(username=u).scalar() is not None
+
+        if(userExists):
             flash('The username already exists. Please try again')
             return redirect(url_for('login'))
     
-        
+        print("I REACH HERE")
         new_user = users(username = u, password = p, email = e, firstname = f, lastname = l, location = loc)
 
         try:
@@ -186,6 +189,7 @@ def signup():
         print("Should not reach here; there is no GET for signup")
         us = users.query.order_by(users.username)
         return render_template('login.html', title = title, create = us)
+
 @app.route('/profile')
 def profile():
         title = "Posts"
