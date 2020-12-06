@@ -1,14 +1,22 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Blueprint
+
 import os
+
+
+auth = Blueprint('auth', __name__)
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 application = app
 bootstrap = Bootstrap(app)
 moment = Moment(app)
@@ -32,15 +40,31 @@ class posts(db.Model):
 
 class users(db.Model):
     username = db.Column(db.String(200), primary_key = True)
-    password = db.Column(db.String(200), nullable = False)
+    password_hash = db.Column(db.String(200), nullable = False)
     email = db.Column(db.String(200), nullable = False)
     firstname = db.Column(db.String(200), nullable = False)
     lastname = db.Column(db.String(200), nullable = False)
     location = db.Column(db.String(200), nullable = False)
     
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
         # function to return a string when we add something
     def __repr__(self):
         return '<User %r>' % self.username
+
+
+
+
     
 
 
@@ -95,17 +119,30 @@ def delete():
 #Sign-In Route
 @app.route('/signin', methods = ['GET'])
 def signin():
-    u = request.args.get("uname")
-    p = request.args.get("psw")
-    r = request.args.get("remember")
     
-    print("Username: " + u)
-    print("Password: " + p)
-    print("Remember: " + r)
-    print("")
     if request.method == "GET":
+
+        u = request.args.get("uname")
+        p = request.args.get("psw")
+        r = request.args.get("remember")
+    
+        print("Username: " + u)
+        print("Password: " + p)
+        print("Remember: " + r)        
+
         print("GET is successful")
         #users = users.query.order_by(users.username)
+
+        user = ""
+        if(users.query.filter_by(u).first()):
+            user = users.query.get(u)
+        else:
+            print("I FAILED TO GET USER")
+
+
+        if(user.verify_password(p)):
+            print("HASH WORKS")
+
         users = "Test"
         return render_template('index.html', user = users)
     else:
@@ -113,8 +150,10 @@ def signin():
     
 
 #Sign-up Route
-@app.route('/signup', methods = ['POST'])
+@app.route('/signup', methods = ['GET', 'POST'])
 def signup():
+
+    title = "Signup"
 
     if request.method == "POST":
         f = request.form['fname']
@@ -124,37 +163,31 @@ def signup():
         p = request.form['psw']
         e = request.form['email']
 
-        print("I work for first name: " + f)
-        print("I work for last name: " + l)
-        print("I work for location: " + loc)
-        print("I work for username: " + u)
-        print("I work for password: " + p)
-        print("I work for email: " + e)
-
-
+        if(users.query.filter_by(email=e)):
+            flash('The email already exists. Please try again')
+            return redirect(url_for('login'))
+        
+        if(users.query.filter_by(username = u)):
+            flash('The username already exists. Please try again')
+            return redirect(url_for('login'))
+    
         
         new_user = users(username = u, password = p, email = e, firstname = f, lastname = l, location = loc)
 
         try:
-            print("I am here")
             db.session.add(new_user)
-            print("I am added")
             db.session.commit()
-            print("I am Commited")
-
             return redirect(url_for('login'))
         except: 
-            return "There was an error creating your user"
+            flash("The query failed. Please try again")
+            return redirect(url_for('login'))
 
     else:
         print("Should not reach here; there is no GET for signup")
-        return redirect(url_for('login'))
-
+        us = users.query.order_by(users.username)
+        return render_template('login.html', title = title, create = us)
 @app.route('/profile')
 def profile():
         title = "Posts"
         p = posts.query.order_by(posts.id)
         return render_template('profile.html', title=title, create=p)
-
-
-  
