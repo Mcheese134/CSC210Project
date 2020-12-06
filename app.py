@@ -83,6 +83,14 @@ def create():
         p = posts.query.order_by(posts.id)
         return render_template('create.html', title=title, create=p)
 
+@app.route("/delete", methods=['GET', "POST"])
+def delete():
+    title = request.form.get("title")
+    post = posts.query.filter_by(location=title).first()
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('profile'))
+
 
 #Sign-up Route
 @app.route('/signup', methods = ['POST'])
