@@ -32,6 +32,13 @@
                         <h3><strong>Rating: </strong></h3><p> {{posts.rating}}</p>
                         <h3><strong>Description: </strong></h3> <p>{{posts.description}}</p>
                         <br>
+
+                    <form method="POST" action="./delete">
+                        <input type="hidden" value="{{posts.location}}" name="title">
+                        <input type="hidden" value="{{posts.rating}}" name="title">
+                        <input type="hidden" value="{{posts.description}}" name="title">
+                        <button type="submit" class="btn btn-primary mb-2">Delete</button>
+                      </form>
                     </div>
                     {% endfor %}
             </div>

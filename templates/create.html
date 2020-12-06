@@ -10,11 +10,11 @@
 <body>
     <div class="section flex-container">
         <video src="static/snow.mp4" type="video/mp4" autoplay muted loop></video>
-
         <div class="wrapper flex-container">
+            <button onclick="location.href = '/';" class="btn btn-primary" style="width:auto;">Back</button><br>
                 <h2>Create New Post</h2>
-            <button onclick="location.href = '/';" style="width:auto;">Back</button>
-          <div class= "flex-container">
+            <!-- <button onclick="location.href = '/';" style="width:auto;">Back</button> -->
+          <!-- <div class= "flex-container">
             <form action = "/create" METHOD = "POST">
                 <label for="usr">Username:</label><br>
                 <input type="text" id="usr" name="usr"><br>
@@ -35,7 +35,35 @@
                 <textarea id = "desc" name = "desc" ></textarea><br>
                 <input type="submit" value="Post">
             </form>
-          </div>
+          </div> -->
+          <form action = "/create" METHOD = "POST">
+            <div class="form-group" style="background-color: rgb(185,173,173); width: 500px;">
+              <label for="usr">Username: </label>
+              <input type="text" class="form-control" id="usr" name = "usr">
+
+              <label for="loc">Location:</label>
+              <select id="inputState" class="form-control" name = "loc">
+                <option>Rochester</option>
+                <option>Seattle</option>
+              </select>
+           
+                <label for="rate">Rating:</label>
+                <select id="rate" class="form-control" name = "rate">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            
+                <label for="desc">Description:</label>
+                <textarea class="form-control" id="desc" rows="3" name = "desc"></textarea><br>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </div>
+            
+        </form>
+
+
         </div>
   
       </div>
