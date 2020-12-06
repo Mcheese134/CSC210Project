@@ -28,7 +28,7 @@
     </div>
 
     <div id="loginForm" class="modal">
-          <form class="modal-content animate" action="/action_page.php" method="post">
+          <form class="modal-content animate" action="/signin" method="get">
             <div class="imgcontainer">
               <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
               <img src="{{url_for('static', filename='logoTransp.png')}}" alt="Avatar" style="width: 10%">
@@ -53,7 +53,7 @@
     <div id="userForm" class="modal">
       <form class="modal-content animate" action="/signup" method="post">
         <div class="imgcontainer">
-          <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <span onclick="document.getElementById('userForm').style.display='none'" class="close" title="Close Modal">&times;</span>
           <img src="{{url_for('static', filename='logoTransp.png')}}" alt="Avatar" style="width: 10%">
         </div>
 

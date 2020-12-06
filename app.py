@@ -92,11 +92,30 @@ def delete():
     return redirect(url_for('profile'))
 
 
+#Sign-In Route
+@app.route('/signin', methods = ['GET'])
+def signin():
+    u = request.args.get("uname")
+    p = request.args.get("psw")
+    r = request.args.get("remember")
+    
+    print("Username: " + u)
+    print("Password: " + p)
+    print("Remember: " + r)
+    print("")
+    if request.method == "GET":
+        print("GET is successful")
+        #users = users.query.order_by(users.username)
+        users = "Test"
+        return render_template('index.html', user = users)
+    else:
+        print("GET IS UNSUCCESFUL")
+    
+
 #Sign-up Route
 @app.route('/signup', methods = ['POST'])
 def signup():
 
-    print("I am here")
     if request.method == "POST":
         f = request.form['fname']
         l = request.form['lname']
@@ -104,6 +123,15 @@ def signup():
         u = request.form['uname']
         p = request.form['psw']
         e = request.form['email']
+
+        print("I work for first name: " + f)
+        print("I work for last name: " + l)
+        print("I work for location: " + loc)
+        print("I work for username: " + u)
+        print("I work for password: " + p)
+        print("I work for email: " + e)
+
+
         
         new_user = users(username = u, password = p, email = e, firstname = f, lastname = l, location = loc)
 
