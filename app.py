@@ -144,8 +144,7 @@ def signin():
 
         if(users.verify_password(self = user, password = p) is not None):
             print("HASH WORKS")
-            return redirect(url_for('index', firstName = user.firstname, lastName = user.lastname))
-            
+            return redirect(url_for('index', user = user))
         else:
             print("HASH FAILS")
             return redirect(url_for('login'))
