@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField
+from wtforms import StringField, SubmitField, IntegerField, BooleanField
 from wtforms.validators import DataRequired
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint
@@ -20,7 +20,8 @@ app.secret_key = os.urandom(24)
 application = app
 bootstrap = Bootstrap(app)
 moment = Moment(app)
-app.config['SECRET KEY'] = 'hard to guess string'
+SECRET_KEY = os.urandom(32)
+app.config['SECRET KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] =\
     'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -36,7 +37,7 @@ class posts(db.Model):
     description = db.Column(db.String(200), nullable=False)
     # function to return a string when we add something
     def __repr__(self):
-        return '<Name %r>' % self.id
+        return '<Posts %r>' % self.id
 
 class users(db.Model):
     username = db.Column(db.String(200), primary_key = True)
@@ -66,8 +67,6 @@ class users(db.Model):
 
 
     
-
-
 class NameForm(FlaskForm):
     usr = StringField('Enter an Username: ',
                              validators=[DataRequired()])
@@ -79,13 +78,32 @@ class NameForm(FlaskForm):
                              validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+
 @app.route('/')
 def index():
         return render_template('index.html')
 
-@app.route('/login')
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    if request.method == "POST":
+        form_loc = request.form["location"]
+        form_rate = request.form["rate"]
+        form_desc = request.form["desc"]
+        post = posts(form_loc, form_rate, form_desc)
+        db = current_app.config["db"]
+        movie_key = db.create(post)
+        try:
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('edit'))
+        except:
+            return "There was an error adding your post."
+    return redirect(url_for("edit", ))
+    # return render_template('edit.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-        return render_template('login.html')
+    return render_template('login.html')
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
@@ -109,9 +127,25 @@ def create():
 
 @app.route("/delete", methods=['GET', "POST"])
 def delete():
-    title = request.form.get("title")
-    post = posts.query.filter_by(location=title).first()
+    title = request.form.get("delID")
+    post = posts.query.filter_by(id=title).first()
     db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('profile'))
+
+@app.route("/update", methods=['GET', "POST"])
+def update():
+    newId = request.form.get("oldID")
+    newLoc = request.form.get("newLoc")
+    oldLoc = request.form.get("oldLoc")
+    newRate = request.form.get("newRate")
+    oldRate = request.form.get("oldRate")
+    newDesc = request.form.get("newDesc")
+    oldDesc = request.form.get("oldDesc")
+    p = posts.query.filter_by(id=newId).first()
+    p.location = newLoc
+    p.rating = newRate
+    p.description = newDesc
     db.session.commit()
     return redirect(url_for('profile'))
 
@@ -181,7 +215,6 @@ def signup():
     
         print("I REACH HERE")
         new_user = users(username = u, password = p, email = e, firstname = f, lastname = l, location = loc)
-
         try:
             db.session.add(new_user)
             db.session.commit()
