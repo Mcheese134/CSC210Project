@@ -81,6 +81,13 @@ class NameForm(FlaskForm):
 
 @app.route('/')
 def index():
+        remember = ""
+        if(request.args.get('remember')):
+            remember = request.args.get('remember')
+
+        if(remember == "on"):
+            print ("I remember login")
+        
         return render_template('index.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
@@ -156,13 +163,13 @@ def signin():
     
     if request.method == "GET":
 
-        u = request.args.get("uname")
+        u = request.args.get("usr")
         p = request.args.get("psw")
         r = request.args.get("remember")
     
         print("Username: " + u)
         print("Password: " + p)
-        print("Remember: " + r)        
+        print("Remember: " + r)  
 
         print("GET is successful")
 
@@ -174,12 +181,13 @@ def signin():
             user = users.query.filter_by(username=u).first()
         else:
             print("I FAILED TO GET USER")
-
-
-        if(users.verify_password(self = user, password = p) is not None):
-            print("HASH WORKS")
-            return redirect(url_for('index', user = user))
-        else:
+            
+        try:
+            if(users.verify_password(self = user, password = p) is not None):
+              
+                print("HASH WORKS")
+                return redirect(url_for('index', user = user, remember = r))
+        except:
             print("HASH FAILS")
             return redirect(url_for('login'))
 
