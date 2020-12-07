@@ -131,19 +131,25 @@ def signin():
         print("Remember: " + r)        
 
         print("GET is successful")
-        #users = users.query.order_by(users.username)
 
-        user = ""
-        if(users.query.filter_by(username = u).first()):
-            user = users.query.filter_by(u).first()
+        user = users()
+
+        userExists = db.session.query(users.username).filter_by(username=u).scalar() is not None
+
+        if(userExists):
+            user = users.query.filter_by(username=u).first()
         else:
             print("I FAILED TO GET USER")
 
 
-        if(users.verify_password(self = users, password = p)):
+        if(users.verify_password(self = user, password = p) is not None):
             print("HASH WORKS")
+            return redirect(url_for('index', firstName = user.firstname, lastName = user.lastname))
+            
+        else:
+            print("HASH FAILS")
+            return redirect(url_for('login'))
 
-        return render_template('index.html')
     else:
         print("GET IS UNSUCCESFUL")
     
