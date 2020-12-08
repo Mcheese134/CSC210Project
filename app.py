@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
@@ -46,6 +46,7 @@ class pinned(db.Model):
     location = db.Column(db.String(200), nullable=False)
     rating = db.Column(db.Integer(), nullable = False)
     description = db.Column(db.String(200), nullable=False)
+    pinnedBy = db.Column(db.String(200), nullable=False)
     # function to return a string when we add something
     def __repr__(self):
         return '<Pinned %r>' % self.id
@@ -74,20 +75,6 @@ class users(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-
-    
-class NameForm(FlaskForm):
-    usr = StringField('Enter an Username: ',
-                             validators=[DataRequired()])
-    loc = StringField('Enter an location: ',
-                             validators=[DataRequired()])
-    rate = IntegerField('Enter an Rating: ',
-                             validators=[DataRequired()])
-    desc = StringField('Enter an Description: ',
-                             validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-
 @app.route('/')
 def index():
         return render_template('login.html')
@@ -95,24 +82,6 @@ def index():
 @app.route('/home', methods = ['GET', 'POST'])
 def home():
     return render_template('index.html')
-
-@app.route('/edit', methods=['GET', 'POST'])
-def edit():
-    if request.method == "POST":
-        form_loc = request.form["location"]
-        form_rate = request.form["rate"]
-        form_desc = request.form["desc"]
-        post = posts(form_loc, form_rate, form_desc)
-        db = current_app.config["db"]
-        movie_key = db.create(post)
-        try:
-            db.session.add(post)
-            db.session.commit()
-            return redirect(url_for('edit'))
-        except:
-            return "There was an error adding your post."
-    return redirect(url_for("edit", ))
-    # return render_template('edit.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -170,17 +139,20 @@ def pin():
         l = request.form['loc']
         r = request.form['rate']
         d = request.form['info']
-        new_post = pinned(username=u, location = l, rating = r, description = d)
+        pin = session['username']
+        print("pin")
+        new_post = pinned(username=u, location = l, rating = r, description = d, pinnedBy = pin)
         # push to database
         try:
             db.session.add(new_post)
             db.session.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
         except:
             return "There was an error adding your post."
     else:
-        p = posts.query.order_by(posts.id)
-        return render_template('index.html', title=title, create=p)
+        print("notpin")
+        p = pinned.query.order_by(pin.id)
+        return render_template('index.html', create=p)
 
 
 #Sign-In Route
@@ -194,8 +166,8 @@ def signin():
         u = request.args.get("usr")
         p = request.args.get("psw")
         r = request.args.get("remember")
-
-
+        session['username'] = request.args.get("usr")
+        print(session['username'])
         user = users()
 
         userExists = db.session.query(users.username).filter_by(username=u).scalar() is not None
@@ -210,6 +182,7 @@ def signin():
 
         try:
             if(users.verify_password(self = user, password = p) is not None):
+                print("in")
                 return redirect(url_for('home', user = u, firstName = firstName, lastName = lastName))
 
         except:
@@ -264,10 +237,7 @@ def signup():
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
         title = "Posts"
-        
-
-        print("User: "+ u)
-
-        p = posts.query.order_by(posts.id)
-        s = pinned.query.order_by(pinned.id)
+        print("in profile: " + session['username'])
+        p = posts.query.filter_by(username=session['username']).order_by(posts.id)
+        s = pinned.query.filter_by(pinnedBy=session['username']).order_by(pinned.id)
         return render_template('profile.html', title=title, create=p, pinned = s)
