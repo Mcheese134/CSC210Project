@@ -114,8 +114,8 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="{{url_for('static', filename='letchworth.jpg')}}" alt="Letchworth State Park" onclick="document.getElementById('letchInfo').style.display='block'">
+                        <div class="item active" data-toggle="modal" data-target="#letchworthInfo">
+                            <img src="{{url_for('static', filename='letchworth.jpg')}}" alt="Letchworth State Park">
                             <div class="carousel-caption">
                                 <h3>Letchworth State Park</h3>
                             </div>
@@ -206,23 +206,44 @@
         </div>
 
         <div id="corbettsInfo" class="modal">
-            <form class="modal-content animate" action="/action_page.php" method="post">
+            <form class="modal-content animate" action = "/pin" method="POST">
               <div class="imgcontainer">
                 <span onclick="document.getElementById('corbettsInfo').style.display='none'" class="close" title="Close Modal">&times;</span>
               </div>
           
               <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <p name = "loc">gzheng4<p>
+                <label for="usr"><b>Username</b></label><br>
+                <input name = "usr" readonly>gzheng4<input>
           
                 <label for="loc"><b>Location</b></label>
-                <p name = "loc"> Rochester, NY</p>
+                <input name = "loc" name = "Rochester, NY"readonly></input>
 
-                <label for="rating"><b>Rating (out of 5)</b></label>
-                <p name = "rating"> 4</p>
+                <label for="rate"><b>Rating (out of 5)</b></label>
+                <input name = "rate" readonly> 4</input>
 
                 <label for="info"><b>Location</b></label>
-                <p name = "info"> Corbett's Glen is a beautiful place to visit! I recommend for everyone to visit before it gets cold.</p>
+                <input name = "info" readonly> Corbett's Glen is a beautiful place to visit! I recommend for everyone to visit before it gets cold.</input>
+
+                <button>Save</button>
+         </div>
+         <div id="letchworthInfo" class="modal" data-target="#letchworthInfo">
+            <form class="modal-content animate" action = "/pin" method="POST">
+              <div class="imgcontainer">
+                <span onclick="document.getElementById('letchworthInfo').style.display='none'" class="close" title="Close Modal">&times;</span>
+              </div>
+          
+              <div class="container">
+                <label for="name"><b>Username</b></label>
+                <p name = "name">gzheng4<p>
+          
+                <label for="l"><b>Location</b></label>
+                <p name = "l"> Rochester, NY</p>
+
+                <label for="r"><b>Rating (out of 5)</b></label>
+                <p name = "r"> 4</p>
+
+                <label for="i"><b>Location</b></label>
+                <p name = "i"> Corbett's Glen is a beautiful place to visit! I recommend for everyone to visit before it gets cold.</p>
 
                 <button>Save</button>
          </div>

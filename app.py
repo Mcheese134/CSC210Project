@@ -39,6 +39,16 @@ class posts(db.Model):
     def __repr__(self):
         return '<Posts %r>' % self.id
 
+class pinned(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(200), nullable=False)
+    location = db.Column(db.String(200), nullable=False)
+    rating = db.Column(db.Integer(), nullable = False)
+    description = db.Column(db.String(200), nullable=False)
+    # function to return a string when we add something
+    def __repr__(self):
+        return '<Pinned %r>' % self.id
+
 class users(db.Model):
     username = db.Column(db.String(200), primary_key = True)
     password_hash = db.Column(db.String(200), nullable = False)
@@ -149,6 +159,26 @@ def update():
     db.session.commit()
     return redirect(url_for('profile'))
 
+@app.route("/pin", methods=['GET', "POST"])
+def pin():
+    title = "New Post"
+    if request.method == "POST":
+        u = request.form['usr']
+        l = request.form['loc']
+        r = request.form['rate']
+        d = request.form['info']
+        new_post = pinned(username=u, location = l, rating = r, description = d)
+        # push to database
+        try:
+            db.session.add(new_post)
+            db.session.commit()
+            return redirect(url_for('index'))
+        except:
+            return "There was an error adding your post."
+    else:
+        p = posts.query.order_by(posts.id)
+        return render_template('index.html', title=title, create=p)
+
 
 #Sign-In Route
 @app.route('/signin', methods = ['GET', 'POST'])
@@ -233,4 +263,5 @@ def signup():
 def profile():
         title = "Posts"
         p = posts.query.order_by(posts.id)
-        return render_template('profile.html', title=title, create=p)
+        s = pinned.query.order_by(pinned.id)
+        return render_template('profile.html', title=title, create=p, pinned = s)
