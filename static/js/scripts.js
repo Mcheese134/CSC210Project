@@ -22,6 +22,10 @@ $(document).ready(function () {
 
   });
 
+  function showForm() {
+    document.getElementById('updateForm').style.display = '';
+  }
+
 function openNav() {
   console.log("I opened");
   document.getElementById("mySidenav").style.width = "95%";
@@ -45,4 +49,5 @@ function initMap() {
     position: uluru,
     map: map,
   });
+
 }
