@@ -228,6 +228,7 @@ def signup():
 def profile():
         title = "Posts"
 
-        p = posts.query.filter_by(username = u).order_by(posts.id)
-        return render_template('profile.html', title=title, create=p)
+        print("User: "+ u)
 
+        p = posts.query.order_by(posts.id)
+        return render_template('profile.html', title=title, create=p)
