@@ -23,12 +23,31 @@ video {
   z-index: -10;
 }
 
+.navbar.bg-light .form-control {
+    border-radius: 4.25rem;
+ }
+
+ a {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+ }
+
+.add {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add:hover {
+  color: #f7d62d;
+  transition: 0.3s;
+}
+
 /* Set the size of the div element that contains the map */
 #map {
-  /* The width is the width of the web page */
-  width: 100%;
-  /* The height is 400 pixels */
-  height: 300px;
+  width: 80%;
+  height: 200px;
+  border-radius: 10px;
 }
 
 .sidenav {
@@ -38,7 +57,6 @@ video {
   z-index: 1;
   top: 0;
   left: 0;
-  /*  background-color: #b9adad;*/
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -46,8 +64,8 @@ video {
 
 .sidenav a {
   padding: 8px 8px 8px 32px;
-  font-size: 25px;
-  color: black; /*#818181;*/
+  font-size: 1.2em;
+  color: black; 
   display: block;
   transition: 0.3s;
 }
@@ -55,27 +73,6 @@ video {
 .sidenav a:hover {
   color: #f1f1f1;
   text-decoration: none;
-}
-
-h1 {
-  text-align: center;
-}
-
-.navbar-expand-lg {
-  width: 100%;
-}
-
-@media only screen and (max-width: 991px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
-
-  .sidenav-wrapper {
-    display: none;
-  }
 }
 
 /* The Modal (background) */
@@ -117,6 +114,63 @@ h1 {
   cursor: pointer;
 }
 
+.friend-wrapper {
+  display: flex; 
+  flex-direction: column; 
+  margin: 0 30px 0 30px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+.friend-item-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.friend-item-wrapper h6 {
+  padding-left: 10px;
+  font-size: 1em;
+}
+
+.friendItem {
+  width: 50px;
+  height: 50px;
+}
+
+.friendItem img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#tooltip {
+  position: relative;
+}
+
+/* Tooltip text */
+#tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  top: 10%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+#tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
@@ -141,6 +195,12 @@ h1 {
   }
 }
 
+@media only screen and (max-width: 991px) {
+  .sidenav-wrapper {
+    display: none;
+  }
+}
+
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
@@ -150,49 +210,4 @@ h1 {
   .cancelbtn {
     width: 100%;
   }
-}
-
-.friendPics img {
-  border-radius: 50%;
-  margin-bottom: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-.item img {
-  height: 100px;
-  width: 100%;
-  object-fit: cover;
-}
-
-#tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-/* Tooltip text */
-#tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-  width: 120px;
-  top: 10%;
-  left: 50%;
-  margin-left: -60px;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-#tooltip:hover .tooltiptext {
-  visibility: visible;
 }
