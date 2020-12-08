@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
@@ -9,11 +9,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint
 
 import os
-
-
-global u
-global firstName
-global lastName
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -158,13 +153,9 @@ def update():
 def signin():
     
     if request.method == "GET":
-        global u
-        global firstName
-        global lastName
         u = request.args.get("usr")
         p = request.args.get("psw")
         r = request.args.get("remember")
-
 
         user = users()
 
@@ -174,6 +165,10 @@ def signin():
             user = users.query.filter_by(username=u).first()
             firstName = user.firstname
             lastName = user.lastname
+            session['username'] = u
+            session['firstname'] = firstName
+            session['lastname'] = lastName
+
         else:
             print("I FAILED TO GET USER")
             
@@ -216,7 +211,6 @@ def signup():
             flash('The username already exists. Please try again')
             return redirect(url_for('login'))
     
-        print("I REACH HERE")
         new_user = users(username = u, password = p, email = e, firstname = f, lastname = l, location = loc)
         try:
             db.session.add(new_user)
@@ -234,7 +228,7 @@ def signup():
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
         title = "Posts"
-        
+        u = session['username']
 
         p = posts.query.filter_by(username=u).order_by(posts.id)
         return render_template('profile.html', title=title, create=p)

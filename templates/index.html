@@ -59,7 +59,7 @@
                     </a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Hi, {{ request.args.get('firstName') }} {{ request.args.get('lastName') }} 
+                          Hi, {{ session['firstname'] }} {{ session['lastname'] }} 
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
                             <h6 class="dropdown-header">Dropdown</h6>
