@@ -234,8 +234,7 @@ def signup():
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
         title = "Posts"
+        
 
-        print("User: "+ u)
-
-        p = posts.query.order_by(posts.id)
+        p = posts.query.filter_by(username=u).order_by(posts.id)
         return render_template('profile.html', title=title, create=p)
