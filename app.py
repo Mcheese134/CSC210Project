@@ -230,3 +230,4 @@ def profile():
 
         p = posts.query.filter_by(username = u).order_by(posts.id)
         return render_template('profile.html', title=title, create=p)
+
