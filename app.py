@@ -11,8 +11,7 @@ from flask import Blueprint
 import os
 
 
-auth = Blueprint('auth', __name__)
-
+global u
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -64,8 +63,6 @@ class users(db.Model):
         return '<User %r>' % self.username
 
 
-
-
     
 class NameForm(FlaskForm):
     usr = StringField('Enter an Username: ',
@@ -81,14 +78,11 @@ class NameForm(FlaskForm):
 
 @app.route('/')
 def index():
-        remember = ""
-        if(request.args.get('remember')):
-            remember = request.args.get('remember')
+        return render_template('login.html')
 
-        if(remember == "on"):
-            print ("I remember login")
-        
-        return render_template('index.html')
+@app.route('/home', methods = ['GET', 'POST'])
+def home():
+    return render_template('index.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
 def edit():
@@ -162,16 +156,11 @@ def update():
 def signin():
     
     if request.method == "GET":
-
+        global u
         u = request.args.get("usr")
         p = request.args.get("psw")
         r = request.args.get("remember")
-    
-        print("Username: " + u)
-        print("Password: " + p)
-        print("Remember: " + r)  
 
-        print("GET is successful")
 
         user = users()
 
@@ -184,9 +173,8 @@ def signin():
             
         try:
             if(users.verify_password(self = user, password = p) is not None):
-              
-                print("HASH WORKS")
-                return redirect(url_for('index', user = user, remember = r))
+                return redirect(url_for('home', user = u, firstName = users.firstname, lastName = users.lastname))
+
         except:
             print("HASH FAILS")
             return redirect(url_for('login'))
@@ -236,8 +224,9 @@ def signup():
         us = users.query.order_by(users.username)
         return render_template('login.html', title = title, create = us)
 
-@app.route('/profile')
+@app.route('/profile', methods = ['GET', 'POST'])
 def profile():
         title = "Posts"
-        p = posts.query.order_by(posts.id)
+
+        p = posts.query.filter_by(username = u).order_by(posts.id)
         return render_template('profile.html', title=title, create=p)
