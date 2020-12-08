@@ -12,6 +12,8 @@ import os
 
 
 global u
+global firstName
+global lastName
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -157,6 +159,8 @@ def signin():
     
     if request.method == "GET":
         global u
+        global firstName
+        global lastName
         u = request.args.get("usr")
         p = request.args.get("psw")
         r = request.args.get("remember")
@@ -168,12 +172,15 @@ def signin():
 
         if(userExists):
             user = users.query.filter_by(username=u).first()
+            firstName = user.firstname
+            lastName = user.lastname
         else:
             print("I FAILED TO GET USER")
             
+
         try:
             if(users.verify_password(self = user, password = p) is not None):
-                return redirect(url_for('home', user = u, firstName = users.firstname, lastName = users.lastname))
+                return redirect(url_for('home', user = u, firstName = firstName, lastName = lastName))
 
         except:
             print("HASH FAILS")
