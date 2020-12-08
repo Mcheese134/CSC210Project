@@ -59,7 +59,7 @@
                     </a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Hi, {{ request.args.get('firstName') }} {{ request.args.get('lastName') }} 
+                          Hi, {{ session['firstname'] }} {{ session['lastname'] }} 
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
                             <h6 class="dropdown-header">Dropdown</h6>
@@ -251,14 +251,14 @@
         </div>
         <div class="container" style="width: 80vw;">
           <div style="margin: 50px 0 50px 0;">
-            <form action="/pin" method = "post">
+            <form action="/pin">
               <div class="form-group">
                 <label for="usr"><b>Username</b></label>
                 <input name = "usr" class="form-control" id="exampleInputEmail1" aria-describedby="usrname" value="gzheng" readonly>
               </div>
               <div class="form-group">
                 <label for="loc"><b>Location</b></label>
-                <input name = "loc" class="form-control" id="loc" value="Rochester, NY" readonly>
+                <input name = "loc" class="form-control" id="loc" value="Corbetts - Rochester, NY" readonly>
               </div>
               <div class="form-group">
                 <label for="rate"><b>Rating (out of 5)</b></label><br>
@@ -268,45 +268,48 @@
                 <label for="info"><b>Description</b></label><br>
                 <input name = "info" class="form-control" id="desc" value="Corbett's Glen is a beautiful place to visit! I recommend for everyone to visit before it gets cold." readonly>
               </div>
+              <div class="form-group">
+                <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{ session['username'] }}" hidden>
+              </div>
               <button type="submit" class="btn btn-primary">Pin</button>
             </form>
           </div>
         </div>
     </div>
 
-    <!-- Letchworth Info -->
-    <div id="letchworthInfo" class="modal" action = "/pin" method = "post, get">
-      <form class="modal-content animate">
-      <div class="imgcontainer">
-          <span onclick="document.getElementById('letchworthInfo').style.display='none'" class="close" title="Close Modal" style="font-size:3em;">&times;</span>
+     <!-- Letchworth Info -->
+  <div id="letchworthInfo" class="modal">
+    <form class="modal-content animate" action="/pin" method="post">
+    <div class="imgcontainer">
+        <span onclick="document.getElementById('letchworthInfo').style.display='none'" class="close" title="Close Modal" style="font-size:3em;">&times;</span>
+    </div>
+    <div class="container" style="width: 80vw;">
+      <div style="margin: 50px 0 50px 0;">
+        <form action="/pin" method = "post">
+          <div class="form-group">
+            <label for="usr"><b>Username</b></label>
+            <input name = "usr" class="form-control" id="exampleInputEmail1" aria-describedby="usrname" value="taro" readonly>
+          </div>
+          <div class="form-group">
+            <label for="loc"><b>Location</b></label>
+            <input name = "loc" class="form-control" id="loc" value="Letchworth State Park - Rochester, NY" readonly>
+          </div>
+          <div class="form-group">
+            <label for="rate"><b>Rating (out of 5)</b></label><br>
+            <input name = "rate" class="form-control" id="rate" value="5" readonly>
+          </div>
+          <div class="form-group">
+            <label for="info"><b>Description</b></label><br>
+            <input name = "info" class="form-control" id="desc" value="Most beautiful views you will ever see." readonly>
+          </div>
+          <div class="form-group">
+            <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{ session['username'] }}" hidden>
+          </div>
+          <button type="submit" class="btn btn-primary">Pin</button>
+        </form>
       </div>
-      <div class="container" style="width: 80vw;">
-        <div style="margin: 50px 0 50px 0;">
-          <form action="/pin" method = "post, get">
-            <div class="form-group">
-              <label for="usr"><b>Username</b></label>
-              <input name = "usr" class="form-control" id="exampleInputEmail1" aria-describedby="usrname" value="gzheng4" readonly>
-            </div>
-            <div class="form-group">
-              <label for="loc"><b>Location</b></label>
-              <input name = "loc" class="form-control" id="loc" value="Rochester, NY" readonly>
-            </div>
-            <div class="form-group">
-              <label for="rate"><b>Rating (out of 5)</b></label><br>
-              <input name = "rate" class="form-control" id="rate" value="5" readonly>
-            </div>
-            <div class="form-group">
-              <label for="info"><b>Description</b></label><br>
-              <input name = "info" class="form-control" id="desc" value="Letchworth State Park is one of the best places I have ever been to! Beautiful." readonly>
-            </div>
-            <div class="form-group">
-              <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{request.args.get('user')}}" hidden>
-            </div>
-            <button type="submit" class="btn btn-primary">Pin</button>
-          </form>
-        </div>
-      </div>
-  </div>
+    </div>
+</div>
 
   <!-- Turning Point Info -->
   <div id="turningInfo" class="modal">
@@ -323,7 +326,7 @@
           </div>
           <div class="form-group">
             <label for="loc"><b>Location</b></label>
-            <input name = "loc" class="form-control" id="loc" value="Rochester, NY" readonly>
+            <input name = "loc" class="form-control" id="loc" value="Turning Point Park - Rochester, NY" readonly>
           </div>
           <div class="form-group">
             <label for="rate"><b>Rating (out of 5)</b></label><br>
@@ -332,6 +335,9 @@
           <div class="form-group">
             <label for="info"><b>Description</b></label><br>
             <input name = "info" class="form-control" id="desc" value="This place is boring during the winter." readonly>
+          </div>
+          <div class="form-group">
+            <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{ session['username'] }}" hidden>
           </div>
           <button type="submit" class="btn btn-primary">Pin</button>
         </form>
@@ -347,14 +353,14 @@
   </div>
   <div class="container" style="width: 80vw;">
     <div style="margin: 50px 0 50px 0;">
-      <form action="/pin" method = "post">
+      <form action="/pin">
         <div class="form-group">
           <label for="usr"><b>Username</b></label>
           <input name = "usr" class="form-control" id="exampleInputEmail1" aria-describedby="usrname" value="davando" readonly>
         </div>
         <div class="form-group">
           <label for="loc"><b>Location</b></label>
-          <input name = "loc" class="form-control" id="loc" value="Seattle, WA" readonly>
+          <input name = "loc" class="form-control" id="loc" value="Issaquah - Seattle, WA" readonly>
         </div>
         <div class="form-group">
           <label for="rate"><b>Rating (out of 5)</b></label><br>
@@ -363,6 +369,9 @@
         <div class="form-group">
           <label for="info"><b>Description</b></label><br>
           <input name = "info" class="form-control" id="desc" value="Best place to go for hiking lovers! 10/10 would recommend." readonly>
+        </div>
+        <div class="form-group">
+          <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{ session['username'] }}" hidden>
         </div>
         <button type="submit" class="btn btn-primary">Pin</button>
       </form>
@@ -377,14 +386,14 @@
   </div>
   <div class="container" style="width: 80vw;">
     <div style="margin: 50px 0 50px 0;">
-      <form action="/pin" method = "post">
+      <form action="/pin">
         <div class="form-group">
           <label for="usr"><b>Username</b></label>
           <input name = "usr" class="form-control" id="exampleInputEmail1" aria-describedby="usrname" value="sassman" readonly>
         </div>
         <div class="form-group">
           <label for="loc"><b>Location</b></label>
-          <input name = "loc" class="form-control" id="loc" value="Seattle, WA" readonly>
+          <input name = "loc" class="form-control" id="loc" value="Alki - Seattle, WA" readonly>
         </div>
         <div class="form-group">
           <label for="rate"><b>Rating (out of 5)</b></label><br>
@@ -393,6 +402,9 @@
         <div class="form-group">
           <label for="info"><b>Description</b></label><br>
           <input name = "info" class="form-control" id="desc" value="Very nice place to surf. Beautiful sunsets." readonly>
+        </div>
+        <div class="form-group">
+          <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{ session['username'] }}" hidden>
         </div>
         <button type="submit" class="btn btn-primary">Pin</button>
       </form>
@@ -414,7 +426,7 @@
         </div>
         <div class="form-group">
           <label for="loc"><b>Location</b></label>
-          <input name = "loc" class="form-control" id="loc" value="Seattle, WA" readonly>
+          <input name = "loc" class="form-control" id="loc" value="Echantments - Seattle, WA" readonly>
         </div>
         <div class="form-group">
           <label for="rate"><b>Rating (out of 5)</b></label><br>
@@ -423,6 +435,9 @@
         <div class="form-group">
           <label for="info"><b>Description</b></label><br>
           <input name = "info" class="form-control" id="desc" value="The most beautiful leaves you will ever see!" readonly>
+        </div>
+        <div class="form-group">
+          <input name = "pinnedBy" class="form-control" id="pinnedBy" value="{{ session['username'] }}" hidden>
         </div>
         <button type="submit" class="btn btn-primary">Pin</button>
       </form>

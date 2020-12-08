@@ -10,11 +10,6 @@ from flask import Blueprint
 
 import os
 
-
-global u
-global firstName
-global lastName
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -115,6 +110,14 @@ def delete():
     db.session.commit()
     return redirect(url_for('profile'))
 
+@app.route("/deletePin", methods=['GET', "POST"])
+def deletePin():
+    title = request.form.get("delPin")
+    pin = pinned.query.filter_by(id=title).first()
+    db.session.delete(pin)
+    db.session.commit()
+    return redirect(url_for('profile'))
+
 @app.route("/update", methods=['GET', "POST"])
 def update():
     newId = request.form.get("oldID")
@@ -139,7 +142,7 @@ def pin():
         l = request.form['loc']
         r = request.form['rate']
         d = request.form['info']
-        pin = session['username']
+        pin = request.form['pinnedBy']
         print("pin")
         new_post = pinned(username=u, location = l, rating = r, description = d, pinnedBy = pin)
         # push to database
@@ -151,8 +154,8 @@ def pin():
             return "There was an error adding your post."
     else:
         print("notpin")
-        p = pinned.query.order_by(pin.id)
-        return render_template('index.html', create=p)
+        # p = pinned.query.order_by(pin.id)
+        return render_template('index.html')
 
 
 #Sign-In Route
@@ -160,14 +163,10 @@ def pin():
 def signin():
     
     if request.method == "GET":
-        global u
-        global firstName
-        global lastName
         u = request.args.get("usr")
         p = request.args.get("psw")
         r = request.args.get("remember")
-        session['username'] = request.args.get("usr")
-        print(session['username'])
+
         user = users()
 
         userExists = db.session.query(users.username).filter_by(username=u).scalar() is not None
@@ -176,13 +175,16 @@ def signin():
             user = users.query.filter_by(username=u).first()
             firstName = user.firstname
             lastName = user.lastname
+            session['username'] = u
+            session['firstname'] = firstName
+            session['lastname'] = lastName
+
         else:
             print("I FAILED TO GET USER")
             
 
         try:
             if(users.verify_password(self = user, password = p) is not None):
-                print("in")
                 return redirect(url_for('home', user = u, firstName = firstName, lastName = lastName))
 
         except:
@@ -219,7 +221,6 @@ def signup():
             flash('The username already exists. Please try again')
             return redirect(url_for('login'))
     
-        print("I REACH HERE")
         new_user = users(username = u, password = p, email = e, firstname = f, lastname = l, location = loc)
         try:
             db.session.add(new_user)
@@ -237,7 +238,7 @@ def signup():
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
         title = "Posts"
-        print("in profile: " + session['username'])
-        p = posts.query.filter_by(username=session['username']).order_by(posts.id)
-        s = pinned.query.filter_by(pinnedBy=session['username']).order_by(pinned.id)
-        return render_template('profile.html', title=title, create=p, pinned = s)
+        u = session['username']
+        p = posts.query.filter_by(username=u).order_by(posts.id)
+        s = pinned.query.filter_by(pinnedBy=u).order_by(pinned.id)
+        return render_template('profile.html', title=title, create=p, pinned=s)
