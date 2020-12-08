@@ -36,6 +36,7 @@
                     {% for posts in create%}
                     <div class="boxed" style = "border: 1px solid #6D87A8; margin-top: 10px; margin-bottom: 10px;">
                         <h3><strong>Location: </strong> </h3><p>{{posts.location}}</p>
+                        <h3><strong>Place: </strong> </h3><p>{{posts.place}}</p>
                         <h3><strong>Rating: </strong></h3><p> {{posts.rating}}</p>
                         <h3><strong>Description: </strong></h3> <p>{{posts.description}}</p>
                         <br>
@@ -47,9 +48,8 @@
                         <input type="hidden" value="{{posts.description}}" name="title">
                         <button type="submit" class="btn btn-primary mb-2">Delete</button>
                     </form>
-
-                    <!-- update form appears when clicking on edit-->
-                      <!-- <button onclick="showForm()" class="btn btn-primary mb-2">Edit</button> -->
+                     <!-- update form appears when clicking on edit-->
+                      <!-- <button onclick="showForm()" class="btn btn-primary mb-2">Edit</button>  -->
                       <!-- style="display: none;" -->
                       <form method="POST" action="./update" id="updateForm">
                         <div class="row">
@@ -64,12 +64,17 @@
                                 <input type="text" value="{{posts.location}}" name="newLoc">
                             </div>
                             <div class="col">
+                                <label for="oldLoc">Location: </label>
+                                <input type="hidden" value="{{posts.location}}" name="oldLoc" id = "oldLoc">
+                                <input type="text" value="{{posts.location}}" name="newLoc">
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class="col">
                                 <label for="oldRate">Rating: </label>
                                 <input type="hidden" value="{{posts.rating}}" name="oldRate" id = "oldRate">
                                 <input type="text" value="{{posts.rating}}" name="newRate"><br>
                             </div>
-                        </div>
-                        <div class = "row">
                             <div class = "col">
                                 <label for="oldDesc">Description: </label><br>
                                 <textarea type="text" value="{{posts.description}}" name="newDesc" rows = "3" value = "{{posts.description}}"></textarea>
@@ -81,6 +86,7 @@
                             </div>
                         </div>
                        </form>
+                    
                     </div>
                 {% endfor %}
             </div>

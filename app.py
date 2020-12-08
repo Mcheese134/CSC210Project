@@ -31,6 +31,7 @@ class posts(db.Model):
     location = db.Column(db.String(200), nullable=False)
     rating = db.Column(db.Integer(), nullable = False)
     description = db.Column(db.String(200), nullable=False)
+    place = db.Column(db.String(200), nullable=False)
     # function to return a string when we add something
     def __repr__(self):
         return '<Posts %r>' % self.id
@@ -76,7 +77,9 @@ def index():
 
 @app.route('/home', methods = ['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    u = session['username']
+    p = posts.query.order_by(posts.id)
+    return render_template('index.html', posts=p)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -90,7 +93,8 @@ def create():
         l = request.form['loc']
         r = request.form['rate']
         d = request.form['desc']
-        new_post = posts(username=u, location = l, rating = r, description = d)
+        pl = request.form['place']
+        new_post = posts(username=u, location = l, rating = r, description = d, place=pl)
         # push to database
         try:
             db.session.add(new_post)
