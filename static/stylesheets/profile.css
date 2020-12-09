@@ -3,6 +3,17 @@
   animation: fade 2s linear;
 }
 
+.about h3 {
+  display: inline;
+  font-weight: bold;
+}
+
+.about h4 {
+	display: inline;
+	font-size: 1em;
+	text-decoration: none;
+}
+
 @keyframes fade {
   0%,
   100% {
