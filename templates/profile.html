@@ -1,99 +1,94 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block
-    title %}{{title}}{% endblock %} {% block page_content %}
-    
-    <div class="position-fixed"> 
-        <div class="section flex-container">
-         <video src="static/profileVid.mp4" type="video/mp4" autoplay muted loop></video>
-       </div>
-   </div>
-    <div class="position-relative flex-container">
-        <div class="position-fixed flex-container sidenav-wrapper" style="width: 20vw;height: 100vh; top: 0%;left: 0%; z-index: 1">
-            <div class="position-relative" style="width: 100%; height: 100%">
-                <div class="position-absolute" style="width: 100%; height: 100%; background: #b9adad; opacity: 0.7;"></div>
-                <div class="position-absolute" style="width: 100%; height: 100%;">
-                    <div style="width: 100%; height: 60px"></div>
-                    {% for pin in pinned%}
-                        <h3><strong>User: </strong> </h3><p>{{pin.username}}</p>
-                        <h3><strong>Location: </strong> </h3><p>{{pin.location}}</p>
-                        <h3><strong>Rating: </strong></h3><p> {{pin.rating}}</p>
-                        <h3><strong>Description: </strong></h3> <p>{{pin.description}}</p>
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} 
+{% block title %}
+{{title}}{% endblock %} 
 
-                        <form method="POST" action="./deletePin">
-                            <input type="hidden" value="{{pin.id}}" name="delPin">
-                            <input type="hidden" value="{{pin.location}}" name="title">
-                            <input type="hidden" value="{{pin.rating}}" name="title">
-                            <input type="hidden" value="{{pin.description}}" name="title">
-                            <button type="submit" class="btn btn-primary mb-2">Delete</button>
-                        </form>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>  
-        <div class="flex-container" style="flex-direction: column; margin-top: 0px; margin-bottom: 10%; width: 50vw; z-index: 2">
-            <img src="{{url_for('static', filename='abTransp.png')}}" alt="Avatar" class = "elementToFadeInAndOut" style="display: block; margin-left:auto; margin-right:auto;">
-            <div style="width: 100%; background: rgb(185,173,173, .75); margin: 10%; margin-top: 5px">
-                    <h2 style="text-align: center;">My Posts</h2>
-                    {% for posts in create%}
-                    <div class="boxed" style = "border: 1px solid #6D87A8; margin-top: 10px; margin-bottom: 10px;">
-                        <h3><strong>Location: </strong> </h3><p>{{posts.location}}</p>
-                        <h3><strong>Place: </strong> </h3><p>{{posts.place}}</p>
-                        <h3><strong>Rating: </strong></h3><p> {{posts.rating}}</p>
-                        <h3><strong>Description: </strong></h3> <p>{{posts.description}}</p>
-                        <br>
+{% block page_content %}
 
-                    <form method="POST" action="./delete">
-                        <input type="hidden" value="{{posts.id}}" name="delID">
-                        <input type="hidden" value="{{posts.location}}" name="title">
-                        <input type="hidden" value="{{posts.rating}}" name="title">
-                        <input type="hidden" value="{{posts.description}}" name="title">
-                        <button type="submit" class="btn btn-primary mb-2">Delete</button>
-                    </form>
-                     <!-- update form appears when clicking on edit-->
-                      <!-- <button onclick="showForm()" class="btn btn-primary mb-2">Edit</button>  -->
-                      <!-- style="display: none;" -->
-                      <form method="POST" action="./update" id="updateForm">
-                        <div class="row">
-                            <div class = "col">
-                                <input type="hidden" value="{{posts.id}}" name="oldID" id = "oldID">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="oldLoc">Location: </label>
-                                <input type="hidden" value="{{posts.location}}" name="oldLoc" id = "oldLoc">
-                                <input type="text" value="{{posts.location}}" name="newLoc">
-                            </div>
-                            <div class="col">
-                                <label for="oldLoc">Location: </label>
-                                <input type="hidden" value="{{posts.location}}" name="oldLoc" id = "oldLoc">
-                                <input type="text" value="{{posts.location}}" name="newLoc">
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class="col">
-                                <label for="oldRate">Rating: </label>
-                                <input type="hidden" value="{{posts.rating}}" name="oldRate" id = "oldRate">
-                                <input type="text" value="{{posts.rating}}" name="newRate"><br>
-                            </div>
-                            <div class = "col">
-                                <label for="oldDesc">Description: </label><br>
-                                <textarea type="text" value="{{posts.description}}" name="newDesc" rows = "3" value = "{{posts.description}}"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class = "col">
-                                <button type="submit" class="btn btn-primary mb-2">Update</button>
-                            </div>
-                        </div>
-                       </form>
-                    
-                    </div>
-                {% endfor %}
-            </div>
+<!-- Video Background -->
+<div class="position-fixed" style=" z-index: -1"> 
+    <div class="section flex-container">
+        <video src="static/profileVid.mp4" type="video/mp4" autoplay muted loop></video>
+    </div>
+</div>
+
+<!-- Content -->
+<main role="main" class="container" style="width: 70%; padding: 70px;">
+    <div class="flex-container pb-4 pt-5" style="width: 100%; justify-content: space-between; margin-top: 30px;">
+        <h1 style="height: 100%; color: white; font-size: 3em;">YOUR POSTS</h1>
+        <div class="flex-container">
+            <a href="" style="color: white; font-size: 2em; margin-right: 10px; text-decoration: none; cursor: auto;">CREATE</a>
+            <a href="/create"><i class="add fa fa-plus-square-o fa-3x"></i></a>
         </div>
     </div>
 
-{% block scripts %} {{ super() }}
-<script type="text/javascript" src="../static/js/scripts.js"></script>
-{%endblock%}{% endblock %}
-    
+    <!--Post Example-->
+    {% for posts in create%}
+    <div class="jumbotron">
+
+        <div class="flex-container" style="width: 100%; justify-content: space-between;">
+            <!-- Title Header -->
+            <h2>{{posts.location}}</h2>
+            <!-- Delete Btn -->
+            <div class="d-flex flex-row my-3">
+                <form method="POST" action="./delete">
+                  <input type="hidden" value="{{posts.id}}" name="delID">
+                  <input type="hidden" value="{{posts.location}}" name="title">
+                  <input type="hidden" value="{{posts.rating}}" name="title">
+                  <input type="hidden" value="{{posts.description}}" name="title">
+                  <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                </form>                
+            </div>
+        </div>
+
+        <!-- Info Description -->
+        <div class="-d-flex" style="flex-direction: column; justify-content: flex-start;">
+            <div class="d-flex flex-column">
+                <div class="about my-2">
+                   <h3>Place: </h3>
+                   <h4>{{posts.place}}</h4>
+                </div>
+                <div class="about my-2">
+                   <h3>Rating: </h3>
+                   <h4>{{posts.rating}}</h4>
+                </div>
+                <div class="about my-2">
+                   <h3>Description: </h3>
+                   <h4>{{posts.description}}</h4>
+                </div>
+            </div>
+
+            <!-- update form appears when clicking on edit-->
+            <!-- <button onclick="showForm()" class="btn btn-primary mb-2">Edit</button>  -->
+            <!-- style="display: none;" -->
+            <form method="POST" action="./update" id="updateForm">
+                <div class="form-group">
+                    <input type="hidden" value="{{posts.id}}" name="oldID" id = "oldID">    
+                </div>
+                <div class="form-group">
+                    <label for="oldLoc">Location:</label>
+                    <input type="hidden" value="{{posts.location}}" name="oldLoc" id = "oldLoc">
+                    <input type="text" class="form-control" placeholder="Enter a location..." value="{{posts.location}}" name="newLoc">
+                </div>
+                <div class="form-group">
+                    <label for="oldRate">Rating:</label>
+                    <input type="hidden" value="{{posts.rating}}" name="oldRate" id = "oldRate">
+                    <input type="text" class="form-control" placeholder="Give a rating..." value="{{posts.rating}}" name="newRate">
+                </div>
+                <div class="form-group">
+                    <label for="oldDesc">Description:</label>
+                    <textarea type="text" class="form-control" value="{{posts.description}}" name="newDesc" rows = "3" value = "{{posts.description}}"> </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2 mr-3">Update</button>
+            </form>
+        </div>
+    </div>
+
+     {% endfor %}
+
+</main>
+
+
+{% endblock %}
+
+
+{% block scripts %} {{ super() }}{%endblock%}
