@@ -19,36 +19,6 @@
 /> -->
 {% endblock %} 
 
-
-<!-- <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="background-color: #698ab4;">
-  <a class="navbar-brand" href="#"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li>
-        <img src="{{url_for('static', filename='logoTransp.png')}}" alt="Avatar" style="width: 50%">
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/create">Create</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav> -->
-
-
-
     <!-- Relative Content Wrapper -->
     <div style="position: relative;">
 
@@ -96,67 +66,6 @@
             </div>
         </nav>
         {% endblock %}
-
-        <!-- Sidebar -->
-        <div class="position-fixed flex-container sidenav-wrapper" style="width: 18vw;height: 100vh; top: 0%;left: 0%; z-index: 1">
-            <div class="position-absolute" style="width: 100%; height: 100%; background: #ebeced">
-                <div style="width: 100%; height: 60px"></div>
-                    <!-- Side Navigation -->
-                    <div class="sidenav" style="width: 100%; height: 100%; display: flex; flex-direction: column; margin-top: 30px; align-items: left">
-                            <a style="margin-bottom: 10px;"><strong>Map View</strong></a>
-                            <!-- Map View -->
-                            <div style="display: flex; justify-content: center;">
-                              <img class="d-block w-100" alt="Second Slide" src="{{url_for('static', filename='worldMap.jpg')}}" width="200" height="200" onclick="document.getElementById('turningInfo').style.display='block'">
-
-                                <!--div id="map"></div> -->
-                            </div>
-                            <!-- Line Separator -->
-                            <div style="display: flex; justify-content: center; margin-top: 20px">
-                                <div style="border-bottom: 1px #b0b0b0 solid; width: 80%;"></div>
-                            </div>
-                            <a style="margin: 10px 0 20px 0;"><strong>Friends</strong></a>
-                            <!-- Friends Section -->
-                            <div class="friend-wrapper" style="height: 250px;">
-                                <div id="tooltip" class="friend-item-wrapper">
-                                    <div class="friendItem">
-                                        <img src = "https://www.outdoorresearch.com/media/magefan_blog/articles/Johnnie_Gall_GPOWERSFILM.jpg" >
-                                    </div>
-                                    <h6>James Sassiman</h6>
-                                    <span class="tooltiptext"> Rochester, NY</span>
-                                </div>
-                                <div id="tooltip" class="friend-item-wrapper">
-                                    <div class="friendItem">
-                                        <img src = "https://s34003.pcdn.co/wp-content/uploads/2019/11/California_Trans-Catalina-Trail-Backpacking-90-Day-4-Emerald-Bay-Gear.jpg.optimal.jpg">
-                                    </div>
-                                    <h6>Grace Zheng</h6>
-                                    <span class="tooltiptext"> Seattle, WA</span>
-                                </div>
-                                <div id="tooltip" class="friend-item-wrapper">
-                                    <div class="friendItem">
-                                        <img src = "https://www.hipcamp.com/journal/wp-content/uploads/2020/02/tyree_moore.jpg">
-                                    </div>
-                                    <h6>Nurfs Rafs</h6>
-                                    <span class="tooltiptext"> Austin, TX</span>
-                                </div>
-                                <div id="tooltip" class="friend-item-wrapper">
-                                    <div class="friendItem">
-                                      <img src = "https://s34003.pcdn.co/wp-content/uploads/2019/11/California_Trans-Catalina-Trail-Backpacking-90-Day-4-Emerald-Bay-Gear.jpg.optimal.jpg">
-                                    </div>
-                                    <h6>David Wang</h6>
-                                    <span class="tooltiptext"> San Francisco, CA</span>
-                                </div>
-                                <div id="tooltip" class="friend-item-wrapper">
-                                    <div class="friendItem">
-                                        <img src = "https://www.outdoorresearch.com/media/magefan_blog/articles/Johnnie_Gall_GPOWERSFILM.jpg" >
-                                    </div>
-                                    <h6>James Sassman</h6>
-                                    <span class="tooltiptext"> New York, NY</span>
-                                </div>
-
-                            </div>
-                    </div>
-            </div>
-        </div>
 
  {% block content %}
 <div>{% block page_content %}{% endblock %}</div>
