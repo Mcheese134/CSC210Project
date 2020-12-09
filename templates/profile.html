@@ -98,7 +98,7 @@
             <h2>{{pin.location}}</h2>
             <!-- Delete Btn -->
             <div class="d-flex flex-row my-3">
-                <form method="POST" action="./delete">
+                <form method="POST" action="./deletePin">
                   <input type="hidden" value="{{pin.id}}" name="delID">
                   <input type="hidden" value="{{pin.username}}" name="title">
                   <input type="hidden" value="{{pin.rating}}" name="title">
@@ -125,29 +125,6 @@
                 </div>
             </div>
 
-            <!-- update form appears when clicking on edit-->
-            <!-- <button onclick="showForm()" class="btn btn-primary mb-2">Edit</button>  -->
-            <!-- style="display: none;" -->
-            <form method="POST" action="./update" id="updateForm">
-                <div class="form-group">
-                    <input type="hidden" value="{{pin.id}}" name="oldID" id = "oldID">    
-                </div>
-                <div class="form-group">
-                    <label for="oldLoc">Location:</label>
-                    <input type="hidden" value="{{pin.location}}" name="oldLoc" id = "oldLoc">
-                    <input type="text" class="form-control" placeholder="Enter a location..." value="{{pin.location}}" name="newLoc">
-                </div>
-                <div class="form-group">
-                    <label for="oldRate">Rating:</label>
-                    <input type="hidden" value="{{pin.rating}}" name="oldRate" id = "oldRate">
-                    <input type="text" class="form-control" placeholder="Give a rating..." value="{{pin.rating}}" name="newRate">
-                </div>
-                <div class="form-group">
-                    <label for="oldDesc">Description:</label>
-                    <textarea type="text" class="form-control" value="{{pin.description}}" name="newDesc" rows = "3" value = "{{pin.description}}"> </textarea>
-                </div>
-                <button type="submit" class="btn btn-primary mb-2 mr-3">Update</button>
-            </form>
         </div>
     </div>
 
