@@ -1,51 +1,77 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../static/stylesheets/create.css" media="screen" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="../static/stylesheets/styles.css" media="screen" type="text/css"> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <title>Adventure Board</title>
 </head>
 
 <body>
-    <div class="section flex-container">
-        <video src="static/snow.mp4" type="video/mp4" autoplay muted loop></video>
-        <div class="wrapper flex-container">
-            <button onclick="location.href = '/home';" class="btn btn-primary" style="width:auto;">Back</button><br>
-                <h2>Create New Post</h2>
-          <form action = "/create" METHOD = "POST">
-            <div class="form-group" style="background-color: rgb(185,173,173); width: 500px;">
-              <input type="text" class="form-control" id="usr" name = "usr" value = "{{ session['username']}}" readonly hidden>
-
-              <label for="loc">Location:</label>
-              <select id="inputState" class="form-control" name = "loc">
-                <option>Rochester</option>
-                <option>Seattle</option>
-              </select>
-
-              <label for="place">Place:</label>
-              <input type="text" class="form-control" id="place" name = "place">
-           
-                <label for="rate">Rating:</label>
-                <select id="rate" class="form-control" name = "rate">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-            
-                <label for="desc">Description:</label>
-                <textarea class="form-control" id="desc" rows="3" name = "desc"></textarea><br>
-                <button type="submit" class="btn btn-primary">Post</button>
+    <!-- Relative Content Wrapper -->
+    <div style="position: relative;">
+        <!-- Video Background -->
+        <div class="position-fixed" style=" z-index: -1"> 
+            <div class="section flex-container">
+                <video src="static/snow.mp4" type="video/mp4" autoplay muted loop></video>
             </div>
-            
-        </form>
-
-
         </div>
+
+        <div class="position-absolute">
+          <button onclick="location.href='/home';" class="btn btn-outline-light" style="width:auto; margin: 15px;">&lang; Back</button>
+        </div>
+
+        <!-- Content -->
+        <main role="main" class="container" style="width: 500px; padding-top: 60px;">
+          <div class="jumbotron">
+            <h2>Create New Post</h2>
+            <div class="flex-container mt-3" style="flex-direction: column;">
+              <form action = "/create" METHOD = "POST">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="usr" name = "usr" value = "{{ session['username']}}" readonly hidden>
+                  <label for="loc">Location:</label>
+                  <input id="inputState" class="form-control" name = "loc">
+                  <label for="place">Place:</label>
+                  <input type="text" class="form-control" id="place" name = "place">
+                  <label for="rate">Rating:</label>
+                  <select id="rate" class="form-control" name = "rate">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  <label for="desc">Description:</label>
+                  <textarea class="form-control" id="desc" rows="3" name = "desc"></textarea><br>
+                  <button type="submit" class="btn btn-success">Post</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
   
-      </div> 
+        </main>
+
+    </div>
+
+
+  <!-- JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
