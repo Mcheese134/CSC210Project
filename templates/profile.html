@@ -96,7 +96,7 @@
             <div class="d-flex flex-row my-3">
                 <form method="POST" action="./delete">
                   <input type="hidden" value="{{pin.id}}" name="delID">
-                  <input type="hidden" value="{{pin.location}}" name="title">
+                  <input type="hidden" value="{{pin.username}}" name="title">
                   <input type="hidden" value="{{pin.rating}}" name="title">
                   <input type="hidden" value="{{pin.description}}" name="title">
                   <button type="submit" class="btn btn-danger mb-2">Delete</button>
@@ -108,8 +108,8 @@
         <div class="-d-flex" style="flex-direction: column; justify-content: flex-start;">
             <div class="d-flex flex-column">
                 <div class="about my-2">
-                   <h3>Place: </h3>
-                   <h4>{{pin.place}}</h4>
+                   <h3>User: </h3>
+                   <h4>{{pin.username}}</h4>
                 </div>
                 <div class="about my-2">
                    <h3>Rating: </h3>
